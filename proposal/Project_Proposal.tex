@@ -5,16 +5,24 @@
 \documentclass[letterpaper, 12pt]{article}
 
 %package
-\usepackage[top= 1in, left = 1in, right= 1in, bottom= 1in]{geometry}
-\renewcommand{\labelitemi}{$\ast$}
+\usepackage[top= 0.5in, left = 1in, right= 1in, bottom= 0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{color}
+
+\titleformat*{\section}{\large\bfseries\rmfamily}
+\titleformat*{\subsection}{\large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+\renewcommand{\labelitemi}{}
 \renewcommand{\labelitemii}{}
 
 
 \begin{document}
 
 \begin{center}
-{\Large 
-	\textsc{Improving performance of Random Forest in Clinical Feature Learning}
+{\Large
+	\textsc{\textbf Medical Images Feature Learning and Analysis with Deep Learning and Random Forest}
 }
 
 \vspace{0.3cm}
@@ -31,27 +39,42 @@
 \end{center}
 
 %body of the proposal
-\begin{itemize}
-%Project idea description
-\item Project Idea
+\section{Project Idea}
 
+%Project idea description
 \begin{itemize}
 \item
-TYPE project idea here. 
-~\cite{reference}
+Tuberculosis disease diagnosis can be aprroached by analyzing clinical symptoms and medical signs. With the help of CT and X-ray images, the process of tuberculosis diagnosis can be quantified. However, before analyzing these images, features for diagnosing tuberculosis must be extracted. Traditionally, it is done manually. In our project, we decide to apply deep learning and random forest methods to approach feature extraction of CT and X-ray images and "diagnose" diseases based on these features. We will use part of our dataset to train our model. 
+\color{red} Ideally, the deep learning network will be worked as a feature extraction layer and the outcoming features will be ... \$ not determine yet ..\$)
+\color{black} The performance of feature extraction will be evaluated by using these features to classify a test dataset. 
+
+CT and X-ray images of tuberculosis patients from Belarus tuberculosis portal
+~\cite{TB_database}.
+It is an open-source database and both CT scan images and chest X-ray images can be found by searching the patient's ID. Clinical records of each patient are also provided.
 \end{itemize}
 
 %Software design or algorithm to develop
-\item Software Design Idea
+\section{Software Design}
+\begin{itemize}
+\item
+We plan to use Python as our prefered programming language. We will implement algorithms involved in deep learning and random forest in Python.
 
-%Papers to read
-\item Papers to read
+\color{red} (deep learning framework ? \$ Tenserflow ? opencv ? \$)
 
 \end{itemize}
 
+
+%Papers to read
+\section{Papers to Read}
+\begin{itemize}
+\item
+TYPE papers to read here.
+\end{itemize}
+
+
 %reference
 \begin{thebibliography}{1}
-\bibitem{reference}
-hhh
+\bibitem{TB_database}
+Open access information resources and the possibility of image-based detection of multiresistant tuberculosis, http://obsolete.tuberculosis.by
 \end{thebibliography}
 \end{document}
