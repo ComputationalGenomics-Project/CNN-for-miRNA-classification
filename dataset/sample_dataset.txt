@@ -1,0 +1,8 @@
+https://isic-archive.com/  
+		International Skin Imaging Collaboration: Melanoma Project
+http://www.cancerimagingarchive.net/
+		The image data in The Cancer Imaging Archive (TCIA) is organized into purpose-built collections of subjects. 
+https://ida.loni.usc.edu/login.jsp?search=true
+		A secure online resource for sharing, visualizing, and exploring neuroscience data
+https://github.com/beamandrew/medical-data
+		This is a curated list of medical data for machine learning. ($ like a summary of many popular databases$)
