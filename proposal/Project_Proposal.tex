@@ -44,21 +44,21 @@
 %Project idea description
 \begin{itemize}
 \item
-Tuberculosis disease diagnosis can be approached by analyzing clinical symptoms and medical signs. With the help of CT and X-ray images, the process of tuberculosis diagnosis can be quantified. However, before analyzing these images, features for diagnosing tuberculosis must be extracted. Traditionally, it is done manually. In our project, we decide to apply deep learning and random forest methods to approach feature extraction of CT and X-ray images and "diagnose" diseases based on these features. We will use part of our dataset to train our model. 
+Tuberculosis disease diagnosis can be approached by analyzing clinical symptoms and medical signs. With the help of CT and X-ray images, the process of tuberculosis diagnosis can be quantified. However, before analyzing these images, features for diagnosing tuberculosis must be extracted. Traditionally, it is done manually. In our project, we decide to apply deep learning and random forest methods to approach feature extraction of CT and X-ray images and "diagnose" diseases based on these features.
 
-The deep learning network will be worked as a feature extraction layer and the outcoming features will be the characteristics of each pixel in every image. When performing classification, we will use Random Forest method and classify all the test data into two groups. The performance of both feature extraction and classification will be evaluated by the accuracy to classify a test dataset.
+The deep learning network will be worked as a feature extraction layer and the outcoming features will be the characteristics of each pixel in every image. When performing classification, we will use Random Forest method and classify all the test data into two groups. We will use part of our dataset to train our model. The performance of both feature extraction and classification will be evaluated by the accuracy to classify a test dataset. 
 
 \item 
 CT and X-ray images of tuberculosis patients are from Belarus tuberculosis portal
 ~\cite{TB_database}.
-It is an open-source database and both CT scan images and chest X-ray images can be found by searching the patient's ID. Clinical records of each patient are also provided. We plan to use these images to construct our data set.
+It is an open-source database and both CT scan images and chest X-ray images can be found by searching the patient's ID. Clinical records of each patient are also provided. We plan to use these images to construct our dataset.
 \end{itemize}
 
 %Software design or algorithm to develop
 \section{Software Design}
 \begin{itemize}
 \item
-We plan to use Python as our prefered programming language. We will implement algorithms involved in deep learning and random forest in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction. To process data and train the model, we plan to use AWS platform. Finally, we may develop a software to wrap out core scripts implementing our models.
+We plan to use Python as our preferred programming language. We will implement algorithms involved in deep learning and random forest in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction. To process data and train the model, we plan to use AWS platform. Finally, we may develop a software to wrap out core scripts implementing our models.
 \end{itemize}
 
 
@@ -74,8 +74,8 @@ We plan to use Python as our prefered programming language. We will implement al
 		~\cite{DepplearningFeatureRepresentation}.
 		
 	\item
-		Random Forest-Based Manifold Learning for Classification of Imaging Data in Dementia
-		~\cite{RandomForestManifoldLearning}.
+		Image classification using random forests and ferns
+		~\cite{RandomForestImageClassification}.
 	\end{itemize}
 \end{itemize}
 
@@ -86,9 +86,9 @@ We plan to use Python as our prefered programming language. We will implement al
 \textit{Open access information resources and the possibility of image-based detection of multiresistant tuberculosis}, http://obsolete.tuberculosis.by
 
 \bibitem{DepplearningFeatureRepresentation}
-Xu, Yan and Mo, Tao and Feng, Qiwei and Zhong, Peilin and Lai, Maode and Eric, I and Chang, Chao, \textit{Deep learning of feature representation with multiple instance learning for medical image analysis}, Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on. IEEE, 2014: 1626--1630
+Xu Y, Mo T, Feng Q, et al., \textit{Deep learning of feature representation with multiple instance learning for medical image analysis}, Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on. IEEE, 2014: 1626--1630
 
-\bibitem{RandomForestManifoldLearning}
-Gray, Katherine R and Aljabar, Paul and Heckemann, Rolf A and Hammers, Alexander and Rueckert, Daniel, \textit{Random forest-based manifold learning for classification of imaging data in dementia}, International Workshop on Machine Learning in Medical Imaging, Springer, 2011: 159--166.
+\bibitem{RandomForestImageClassification}
+Bosch, Anna and Zisserman, Andrew and Munoz, Xavier, \textit{Image classification using random forests and ferns}, Computer Vision, 2007. ICCV 2007. IEEE 11th International Conference on. IEEE, 2007: 1--8
 \end{thebibliography}
 \end{document}
