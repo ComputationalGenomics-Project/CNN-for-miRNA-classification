@@ -2,10 +2,10 @@
 % By Han Den (Andrew Id: hdeng1) and Luyi Ma (Andrew Id: luyim)
 % Topic : Improving performance of Random Forest in Clinical Feature Learning
 
-\documentclass[letterpaper, 12pt]{article}
+\documentclass[letterpaper, 11pt]{article}
 
 %package
-\usepackage[top= 0.5in, left = 1in, right= 1in, bottom= 0.5in]{geometry}
+\usepackage[top= 0.5in, left = 0.5in, right= 0.5in, bottom= 0.5in]{geometry}
 \usepackage{titlesec}
 \usepackage{color}
 
@@ -14,8 +14,8 @@
 \titleformat*{\subsubsection}{\large\bfseries}
 \titleformat*{\paragraph}{\large\bfseries}
 \titleformat*{\subparagraph}{\large\bfseries}
-\renewcommand{\labelitemi}{}
-\renewcommand{\labelitemii}{}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{\textperiodcentered}
 
 
 \begin{document}
@@ -48,17 +48,17 @@ Tuberculosis disease diagnosis can be approached by analyzing clinical symptoms 
 
 The deep learning network will be worked as a feature extraction layer and the outcoming features will be the characteristics of each pixel in every image. When performing classification, we will use Random Forest method and classify all the test data into two groups. The performance of both feature extraction and classification will be evaluated by the accuracy to classify a test dataset.
 
-CT and X-ray images of tuberculosis patients from Belarus tuberculosis portal
+\item 
+CT and X-ray images of tuberculosis patients are from Belarus tuberculosis portal
 ~\cite{TB_database}.
-It is an open-source database and both CT scan images and chest X-ray images can be found by searching the patient's ID. Clinical records of each patient are also provided.
+It is an open-source database and both CT scan images and chest X-ray images can be found by searching the patient's ID. Clinical records of each patient are also provided. We plan to use these images to construct our data set.
 \end{itemize}
 
 %Software design or algorithm to develop
 \section{Software Design}
 \begin{itemize}
 \item
-We plan to use Python as our prefered programming language. We will implement algorithms involved in deep learning and random forest in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction.
-
+We plan to use Python as our prefered programming language. We will implement algorithms involved in deep learning and random forest in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction. To process data and train the model, we plan to use AWS platform. Finally, we may develop a software to wrap out core scripts implementing our models.
 \end{itemize}
 
 
@@ -66,13 +66,29 @@ We plan to use Python as our prefered programming language. We will implement al
 \section{Papers to Read}
 \begin{itemize}
 \item
-Open access information resources and the possibility of image-based detection of multiresistant tuberculosis, http://obsolete.tuberculosis.by
+	\textbf{List fo papers}
+	
+	\begin{itemize}
+	\item
+		Deep Learning of Feature Representation with Multiple Instance Learning for Medical Image Analysis
+		~\cite{DepplearningFeatureRepresentation}.
+		
+	\item
+		Random Forest-Based Manifold Learning for Classification of Imaging Data in Dementia
+		~\cite{RandomForestManifoldLearning}.
+	\end{itemize}
 \end{itemize}
 
 
 %reference
 \begin{thebibliography}{1}
 \bibitem{TB_database}
-Open access information resources and the possibility of image-based detection of multiresistant tuberculosis, http://obsolete.tuberculosis.by
+\textit{Open access information resources and the possibility of image-based detection of multiresistant tuberculosis}, http://obsolete.tuberculosis.by
+
+\bibitem{DepplearningFeatureRepresentation}
+Xu, Yan and Mo, Tao and Feng, Qiwei and Zhong, Peilin and Lai, Maode and Eric, I and Chang, Chao, \textit{Deep learning of feature representation with multiple instance learning for medical image analysis}, Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on. IEEE, 2014: 1626--1630
+
+\bibitem{RandomForestManifoldLearning}
+Gray, Katherine R and Aljabar, Paul and Heckemann, Rolf A and Hammers, Alexander and Rueckert, Daniel, \textit{Random forest-based manifold learning for classification of imaging data in dementia}, International Workshop on Machine Learning in Medical Imaging, Springer, 2011: 159--166.
 \end{thebibliography}
 \end{document}
