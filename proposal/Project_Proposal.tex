@@ -44,9 +44,9 @@
 %Project idea description
 \begin{itemize}
 \item
-Tuberculosis disease diagnosis can be aprroached by analyzing clinical symptoms and medical signs. With the help of CT and X-ray images, the process of tuberculosis diagnosis can be quantified. However, before analyzing these images, features for diagnosing tuberculosis must be extracted. Traditionally, it is done manually. In our project, we decide to apply deep learning and random forest methods to approach feature extraction of CT and X-ray images and "diagnose" diseases based on these features. We will use part of our dataset to train our model. 
-\color{red} Ideally, the deep learning network will be worked as a feature extraction layer and the outcoming features will be ... \$ not determine yet ..\$)
-\color{black} The performance of feature extraction will be evaluated by using these features to classify a test dataset. 
+Tuberculosis disease diagnosis can be approached by analyzing clinical symptoms and medical signs. With the help of CT and X-ray images, the process of tuberculosis diagnosis can be quantified. However, before analyzing these images, features for diagnosing tuberculosis must be extracted. Traditionally, it is done manually. In our project, we decide to apply deep learning and random forest methods to approach feature extraction of CT and X-ray images and "diagnose" diseases based on these features. We will use part of our dataset to train our model. 
+
+The deep learning network will be worked as a feature extraction layer and the outcoming features will be the characteristics of each pixel in every image. When performing classification, we will use Random Forest method and classify all the test data into two groups. The performance of both feature extraction and classification will be evaluated by the accuracy to classify a test dataset.
 
 CT and X-ray images of tuberculosis patients from Belarus tuberculosis portal
 ~\cite{TB_database}.
@@ -57,9 +57,7 @@ It is an open-source database and both CT scan images and chest X-ray images can
 \section{Software Design}
 \begin{itemize}
 \item
-We plan to use Python as our prefered programming language. We will implement algorithms involved in deep learning and random forest in Python.
-
-\color{red} (deep learning framework ? \$ Tenserflow ? opencv ? \$)
+We plan to use Python as our prefered programming language. We will implement algorithms involved in deep learning and random forest in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction.
 
 \end{itemize}
 
@@ -68,7 +66,7 @@ We plan to use Python as our prefered programming language. We will implement al
 \section{Papers to Read}
 \begin{itemize}
 \item
-TYPE papers to read here.
+Open access information resources and the possibility of image-based detection of multiresistant tuberculosis, http://obsolete.tuberculosis.by
 \end{itemize}
 
 
