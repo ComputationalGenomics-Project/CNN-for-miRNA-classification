@@ -12,28 +12,35 @@ def permute(m = 8):
 	while (True):
 		line = fileref.readline()
 		if (line != ''):
-			mir.append(line[:-1])
-
+			break
+		mir.append(line[:-1])
+	print "finish loading miRNA sequences"
 	if (m < 8):
 		m = 8
-	roundNum = math.pow(4, m)
+	roundNum = int(math.pow(4, m))
+	count = 0
+	print "roundNum: ", roundNum
 	for i in xrange(roundNum):
+		if (i % 1000 == 0):
+			print "round: ", i
 		length = getLen()
 		tempStr = ''
-		for i in range(len):
+		for i in range(length):
 			tempStr += ATCG()
 		if (tempStr in mir):
 			continue
-		boolean = True
+		boolean = False
 		for j in mir:
 			if (j in tempStr):
-				boolean = False
+				boolean = True
 				break
 		if (boolean):
 			continue
 		file.write(tempStr + '\n')
+		count += 1
 	file.close()
 	fileref.close()
+	print "Number of Permutations: ", count
 
 
 def ATCG():
@@ -62,3 +69,4 @@ def getLen():
 		if (temp <= count):
 			return x[i]
 
+permute(8)
