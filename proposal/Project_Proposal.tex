@@ -1,6 +1,6 @@
 % Project proposal for Computational Genomics s2017
 % By Han Den (Andrew Id: hdeng1) and Luyi Ma (Andrew Id: luyim)
-% Topic : Improving performance of Random Forest in Clinical Feature Learning
+% Topic : Classification of miRNA using deep-learning method
 
 \documentclass[letterpaper, 11pt]{article}
 
@@ -22,7 +22,7 @@
 
 \begin{center}
 {\Large
-	\textsc{\textbf Medical Images Feature Learning and Analysis with Deep Learning and Random Forest}
+	\textsc{\textbf Classification of microRNA Using Deep-learning Method}
 }
 
 \vspace{0.3cm}
@@ -44,21 +44,22 @@
 %Project idea description
 \begin{itemize}
 \item
-Tuberculosis disease diagnosis can be approached by analyzing clinical symptoms and medical signs. With the help of CT and X-ray images, the process of tuberculosis diagnosis can be quantified. However, before analyzing these images, features for diagnosing tuberculosis must be extracted. Traditionally, it is done manually. In our project, we decide to apply deep learning and random forest methods to approach feature extraction of CT and X-ray images and "diagnose" diseases based on these features.
+A microRNA (abbreviated miRNA) is a small non-coding RNA molecule (containing about 22 nucleotides) found in plants, animals and some viruses, that functions in RNA silencing and post-transcriptional regulation of gene expression. While the majority of miRNAs are located within the cell, some miRNAs, commonly known as circulating miRNAs or extracellular miRNAs, have also been found in extracellular environment, including various biological fluids and cell culture media~\cite{Wiki}.
+So it's of great value to distinguish miRNA from the whole genome and make accurate classification.
 
-The deep learning network will be worked as a feature extraction layer and the outcoming features will be the characteristics of each pixel in every image. When performing classification, we will use Random Forest method and classify all the test data into two groups. We will use part of our dataset to train our model. The performance of both feature extraction and classification will be evaluated by the accuracy to classify a test dataset. 
+
+The deep learning network will be worked as a classifier and we basically use CNN to make the classification. We will use some natural language processing methods to parse DNA sequence and make classification based on these data. We choose both miRNA and non-miRNA data to train our model and test accuracy. 
 
 \item 
-CT and X-ray images of tuberculosis patients are from Belarus tuberculosis portal
-~\cite{TB_database}.
-It is an open-source database and both CT scan images and chest X-ray images can be found by searching the patient's ID. Clinical records of each patient are also provided. We plan to use these images to construct our dataset.
+We plan to use data of miRNA from an open-source database~\cite{miData}.
+All the miRNA sequence in this database will be change into DNA sequence based on complementary rule and used as our positive input training and testing data. We will use permutaion methods to generate our negative input training data and use real data in genome as our negative input testing data. The output will be either 0 or 1, indicating it's miRNA or not.
 \end{itemize}
 
 %Software design or algorithm to develop
 \section{Software Design}
 \begin{itemize}
 \item
-We plan to use Python as our preferred programming language. We will implement algorithms involved in deep learning and random forest in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction. To process data and train the model, we plan to use AWS platform. Finally, we may develop a software to wrap out core scripts implementing our models.
+We plan to use Python as our preferred programming language. We will implement algorithms involved in deep learning and natural language processing in Python. And we also plan to use some deep learning frameworks like Tensorflow to help us in feature extraction. To process data and train the model, we plan to use AWS platform. Finally, we may develop a software to wrap out core scripts implementing our models.
 \end{itemize}
 
 
@@ -70,25 +71,26 @@ We plan to use Python as our preferred programming language. We will implement a
 	
 	\begin{itemize}
 	\item
-		Deep Learning of Feature Representation with Multiple Instance Learning for Medical Image Analysis
-		~\cite{DepplearningFeatureRepresentation}.
+		DNA Sequence Classification by Convolutional Neural Network~\cite{NLP}.
 		
 	\item
-		Image classification using random forests and ferns
-		~\cite{RandomForestImageClassification}.
+		Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations~\cite{CNN}.
 	\end{itemize}
 \end{itemize}
 
 
 %reference
 \begin{thebibliography}{1}
-\bibitem{TB_database}
-\textit{Open access information resources and the possibility of image-based detection of multiresistant tuberculosis}, http://obsolete.tuberculosis.by
+\bibitem{Wiki}
+\textit{}https://en.wikipedia.org/wiki/MicroRNA
 
-\bibitem{DepplearningFeatureRepresentation}
-Xu Y, Mo T, Feng Q, et al., \textit{Deep learning of feature representation with multiple instance learning for medical image analysis}, Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on. IEEE, 2014: 1626--1630
+\bibitem{miData}
+\textit{}http://www.mirbase.org/
 
-\bibitem{RandomForestImageClassification}
-Bosch, Anna and Zisserman, Andrew and Munoz, Xavier, \textit{Image classification using random forests and ferns}, Computer Vision, 2007. ICCV 2007. IEEE 11th International Conference on. IEEE, 2007: 1--8
+\bibitem{NLP}
+Nguyen N G, Tran V A, Ngo D L, et al. \textit{DNA Sequence Classification by Convolutional Neural Network}[J]. Journal of Biomedical Science and Engineering, 2016, 9(05): 280.
+
+\bibitem{CNN}
+Lee H, Grosse R, Ranganath R, et al. .\textit{Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations}[C]Proceedings of the 26th annual international conference on machine learning. ACM, 2009: 609-616.
 \end{thebibliography}
 \end{document}
