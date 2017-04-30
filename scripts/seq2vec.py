@@ -33,7 +33,7 @@ def getLookupTable(length = 3):
 	lookup['kmer'] = array
 	table = []
 	for i in range(len(array)):
-		temp = [0 for i in range(len(array))]
+		temp = [0 for j in range(len(array))]  # bug fixed
 		temp[i] = 1
 		table.append(temp)
 	lookup['table'] = table
@@ -53,9 +53,10 @@ def seq2vec(seq, stride = 1):
 		for i in range(len_out):
 			temp_Seq = seq[i: i+k]
 			if temp_Seq in lookup['kmer']:
-				vec = np.hstack(vec, lookup['table'][lookup['kmer'].index(temp_Seq)])
+				print
+				vec = np.hstack((vec, lookup['table'][lookup['kmer'].index(temp_Seq)]))
 			else:
-				vec = np.hstack(vec, [0 for i in range(num)])
+				vec = np.hstack((vec, [0 for i in range(num)]))
 	return vec
 
 def load_data():
@@ -91,8 +92,5 @@ def load_data():
 	xTest = xTest.T
 
 	return (xTrain, yTrain, xTest, yTest)
-
-
-
 
 
