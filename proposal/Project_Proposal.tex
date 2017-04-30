@@ -44,15 +44,15 @@
 %Project idea description
 \begin{itemize}
 \item
-A microRNA (abbreviated miRNA) is a small non-coding RNA molecule (containing about 22 nucleotides) found in plants, animals and some viruses, that functions in RNA silencing and post-transcriptional regulation of gene expression. While the majority of miRNAs are located within the cell, some miRNAs, commonly known as circulating miRNAs or extracellular miRNAs, have also been found in extracellular environment, including various biological fluids and cell culture media~\cite{Wiki}.
-So it's of great value to distinguish miRNA from the whole genome and make accurate classification.
+A microRNA (abbreviated miRNA) is a small non-coding RNA molecule (containing about 22 nucleotides) found in plants, animals and some viruses, that functions in RNA silencing and post-transcriptional regulation of gene expression. While the majority of miRNAs are located within the cell, some miRNAs, commonly known as circulating miRNAs or extracellular miRNAs, have also been found in the extracellular environment, including various biological fluids and cell culture media~\cite{Wiki}.
+So it's of great value to distinguish miRNAs from the whole genome and make accurate classifications.
 
 
-The deep learning network will be worked as a classifier and we basically use CNN to make the classification. We will use some natural language processing methods to parse DNA sequence and make classification based on these data. We choose both miRNA and non-miRNA data to train our model and test accuracy. 
+The deep learning network will be worked as a classifier and we basically use CNN to make the classification. We will use some natural language processing methods to parse DNA sequence and make classifications based on these data. We choose both miRNA and non-miRNA data to train our model and test accuracy. 
 
 \item 
 We plan to use data of miRNA from an open-source database~\cite{miData}.
-All the miRNA sequence in this database will be change into DNA sequence based on complementary rule and used as our positive input training and testing data. We will use permutaion methods to generate our negative input training data and use real data in genome as our negative input testing data. The output will be either 0 or 1, indicating it's miRNA or not.
+All the miRNA sequence in this database will be changed into DNA sequence based on the complementary rule and used as our positive input training and testing data. We will use permutation methods to generate our negative input training data and use real data in a sample genome as our negative input testing data. The output will be either 0 or 1, indicating it's miRNA or not.
 \end{itemize}
 
 %Software design or algorithm to develop
@@ -91,6 +91,6 @@ We plan to use Python as our preferred programming language. We will implement a
 Nguyen N G, Tran V A, Ngo D L, et al. \textit{DNA Sequence Classification by Convolutional Neural Network}[J]. Journal of Biomedical Science and Engineering, 2016, 9(05): 280.
 
 \bibitem{CNN}
-Lee H, Grosse R, Ranganath R, et al. .\textit{Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations}[C]Proceedings of the 26th annual international conference on machine learning. ACM, 2009: 609-616.
+Lee H, Grosse R, Ranganath R, et al. \textit{Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations}[C]Proceedings of the 26th annual international conference on machine learning. ACM, 2009: 609-616.
 \end{thebibliography}
 \end{document}
