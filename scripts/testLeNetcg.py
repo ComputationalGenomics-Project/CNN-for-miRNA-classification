@@ -7,6 +7,8 @@ import cnn_lenet
 import pickle
 import copy
 import random
+import seq2vec
+import cgFinal
 
 def get_lenet():
   """Define LeNet
@@ -22,8 +24,8 @@ def get_lenet():
   layers = {}
   layers[1] = {}
   layers[1]['type'] = 'DATA'
-  layers[1]['height'] = 28
-  layers[1]['width'] = 28
+  layers[1]['height'] = 128
+  layers[1]['width'] = 19
   layers[1]['channel'] = 1
   layers[1]['batch_size'] = 64
 
@@ -35,7 +37,7 @@ def get_lenet():
   layers[2]['pad'] = 0
   layers[2]['group'] = 1
 
-  layers[3] = {}
+  """layers[3] = {}
   layers[3]['type'] = 'POOLING'
   layers[3]['k'] = 2
   layers[3]['stride'] = 2
@@ -53,19 +55,19 @@ def get_lenet():
   layers[5]['type'] = 'POOLING'
   layers[5]['k'] = 2
   layers[5]['stride'] = 2
-  layers[5]['pad'] = 0
+  layers[5]['pad'] = 0"""
 
-  layers[6] = {}
-  layers[6]['type'] = 'IP'
-  layers[6]['num'] = 500
-  layers[6]['init_type'] = 'uniform'
+  layers[3] = {}
+  layers[3]['type'] = 'IP'
+  layers[3]['num'] = 500
+  layers[3]['init_type'] = 'uniform'
 
-  layers[7] = {}
-  layers[7]['type'] = 'RELU'
+  layers[4] = {}
+  layers[4]['type'] = 'RELU'
 
-  layers[8] = {}
-  layers[8]['type'] = 'LOSS'
-  layers[8]['num'] = 10
+  layers[5] = {}
+  layers[5]['type'] = 'LOSS'
+  layers[5]['num'] = 10
   return layers
 
 
@@ -76,11 +78,16 @@ def main():
   # load data
   # change the following value to true to load the entire dataset
   fullset = False
-  xtrain, ytrain, xval, yval, xtest, ytest = cnn_lenet.load_mnist(fullset)
+  """xtrain, ytrain, xval, yval, xtest, ytest = cnn_lenet.load_mnist(fullset)"""
+  XTrain,yTrain = cgFinal.genTrain('positive.txt','negative.txt')
+  XTrainTrue = XTrain[:,:XTrain.shape[1] * 2 / 3]
+  Xtest = XTrain[:,XTrain.shape[1] * 2 / 3:]
+  yTrainTrue = yTrain[:yTrain.shape[0] * 2 / 3]
+  ytest = yTrain[yTrain.shape[0]  * 2 / 3:]
 
-  xtrain = np.hstack([xtrain, xval])
-  ytrain = np.hstack([ytrain, yval])
-  m_train = xtrain.shape[1]
+  """xtrain = np.hstack([xtrain, xval])
+  ytrain = np.hstack([ytrain, yval])"""
+  m_train = XTrainTrue.shape[1]
 
   # cnn parameters
   batch_size = 64
@@ -119,8 +126,8 @@ def main():
 
     [cp, param_grad] = cnn_lenet.conv_net(params,
                                           layers,
-                                          xtrain[:, idx],
-                                          ytrain[idx])
+                                          XTrainTrue[:, idx],
+                                          yTrainTrue[idx])
 
     # we have different epsilons for w and b
     w_rate = cnn_lenet.get_lr(step, epsilon*w_lr, gamma, power)
@@ -139,8 +146,8 @@ def main():
 
     # display test accuracy
     if (step+1) % test_interval == 0:
-      layers[1]['batch_size'] = xtest.shape[1]
-      cptest, _ = cnn_lenet.conv_net(params, layers, xtest, ytest)
+      layers[1]['batch_size'] = Xtest.shape[1]
+      cptest, _ = cnn_lenet.conv_net(params, layers, Xtest, ytest)
       layers[1]['batch_size'] = 64
       print '\ntest accuracy: %f\n' % (cptest['percent'])
 
