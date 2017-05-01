@@ -46,9 +46,13 @@ def genTrain(pos,neg):
     for i in range(XNegative.shape[0]):
         yTrain.append(0)
     XTrain = np.vstack((XPositive,XNegative))
-    XTrain = XTrain.T
-    yTrain = np.array(yTrain)
-    return XTrain,yTrain
+    yTrain = np.matrix(np.array(yTrain))
+    yTrain = yTrain.T
+    allTrain = np.hstack((XTrain,yTrain))
+    np.random.shuffle(allTrain)
+    XTrain = allTrain[:,:allTrain.shape[1]-1]
+    yTrain = allTrain[:,allTrain.shape[1]-1:]
+    return XTrain.T,yTrain
 
 """make XTrain be a 3-D matrix, first dimension is 128 * 19, representing a sequence, second dimension is 64,
 represneting batch size and the last dimension is len(allData) / 64, representing how many batches in total
@@ -63,3 +67,4 @@ def addBatch(pos,neg,batchSize = 64):
     return XTrain,yTrain"""
 
 #XTrain,yTrain = genTrain('positive.txt','negative.txt')
+
