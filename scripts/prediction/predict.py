@@ -9,6 +9,7 @@ import copy
 import random
 import seq2vec
 import seq2mat
+from sklearn.metrics import f1_score
 
 def get_lenet():
   """Define LeNet
@@ -71,6 +72,8 @@ def get_lenet():
   return layers
 
 
+
+
 def main():
   # define lenet
   layers = get_lenet()
@@ -96,8 +99,9 @@ def main():
   ytrain = np.hstack([ytrain, yval])"""
   m_train = XTrainTrue.shape[1]
 
+  print "finish loading data"
   # cnn parameters
-  batch_size = 64
+  batch_size = 32
   mu = 0.9
   epsilon = 0.01
   gamma = 0.0001
@@ -106,72 +110,42 @@ def main():
   w_lr = 1
   b_lr = 2
 
-  test_interval = 500
-  display_interval = 10
-  snapshot = 100
-  max_iter = 10000
 
-  loadPara = bool(raw_input("load parameters, True or False: "))
-  if loadPara:
-    pickle_path = 'lenet.mat'
-    pickle_file = open(pickle_path, 'rb')
-    params = pickle.load(pickle_file)
-    param_winc = copy.deepcopy(params)
-  else:
+
   # initialize parameters
-    params = cnn_lenet.init_convnet(layers)
-    param_winc = copy.deepcopy(params)
+  pickle_path = 'lenet.mat'
+  pickle_file = open(pickle_path, 'rb')
+  params = pickle.load(pickle_file)
+  param_winc = copy.deepcopy(params)
 
   for l_idx in range(1, len(layers)):
     param_winc[l_idx]['w'] = np.zeros(param_winc[l_idx]['w'].shape)
     param_winc[l_idx]['b'] = np.zeros(param_winc[l_idx]['b'].shape)
 
-  # learning iterations
-  indices = range(m_train)
-  random.shuffle(indices)
-  for step in range(1500, max_iter):
-    # get mini-batch and setup the cnn with the mini-batch
-    start_idx = step * batch_size % m_train
-    end_idx = (step+1) * batch_size % m_train
-    if start_idx > end_idx:
-      random.shuffle(indices)
-      continue
-    idx = indices[start_idx: end_idx]
+  layers[1]['batch_size'] = Xtest.shape[1]
+  cp, param_grad, outcome = cnn_lenet.conv_net(params, layers, Xtest, ytest)
+  
+  vocab = {}
+  vocab['tag'] = ["T", "F"]
+  vocab['index'] = [0, 1]
 
-    [cp, param_grad] = cnn_lenet.conv_net(params,
-                                          layers,
-                                          XTrainTrue[:, idx],
-                                          yTrainTrue[idx])
+  file_out = open("prediction.txt", 'w')
+  file_out.write("True label" + '\t' + "Prediction\n")
 
-    # we have different epsilons for w and b
-    w_rate = cnn_lenet.get_lr(step, epsilon*w_lr, gamma, power)
-    b_rate = cnn_lenet.get_lr(step, epsilon*b_lr, gamma, power)
-    params, param_winc = cnn_lenet.sgd_momentum(w_rate,
-                           b_rate,
-                           mu,
-                           weight_decay,
-                           params,
-                           param_winc,
-                           param_grad)
+  for i in range(len(outcome)):
+    if outcome[i] in vocab['index']:
+       file_out.write(vocab['tag'][outcome[i]])
+       file_out.write('\t')
+       file_out.write(vocab['tag'][ytest[i]])
+       if i == len(outcome) - 1:
+         break
+       file_out.write('\n')
+  pickle_file.close()
+  file_out.close()
+  fscore = f1_score(ytest, outcome)
 
-    # display training loss
-    if (step+1) % display_interval == 0:
-      print 'cost = %f training_percent = %f' % (cp['cost'], cp['percent'])
-
-    # display test accuracy
-    if (step+1) % test_interval == 0:
-      layers[1]['batch_size'] = Xtest.shape[1]
-      cptest, _ = cnn_lenet.conv_net(params, layers, Xtest, ytest)
-      layers[1]['batch_size'] = 64
-      print '\ntest accuracy: %f\n' % (cptest['percent'])
-
-    # save params peridocally to recover from any crashes
-    if (step+1) % snapshot == 0:
-      pickle_path = 'lenet.mat'
-      pickle_file = open(pickle_path, 'wb')
-      pickle.dump(params, pickle_file)
-      pickle_file.close()
-
+  print '\ntest accuracy: %f\n' % (cp['percent'])
+  print 'F1 score: %f\n' % (fscore)
 
 if __name__ == '__main__':
   main()

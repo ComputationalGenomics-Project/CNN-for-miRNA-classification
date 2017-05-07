@@ -1,0 +1,11 @@
+test set size: 7171
+
+result:
+
+test accuracy: 0.995259
+
+F1 score: 0.995199
+
+Recall: 0.990444
+
+Average Precision: 0.997593
