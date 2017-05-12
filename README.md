@@ -1,7 +1,5 @@
-This repo is for computational genomics project in clinical feature learning
-using deep learning and random forest model.
+This repo is for computational genomics project in miRNA indentification and classification using deep learning model.
 Team members:
 	Han Deng, Luyi Ma
 Project Title:
-	Medical images feature learning and analysis
-		with deep learning and random forest
+	Classification of microRNA using Deep Learning Method
